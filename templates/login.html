@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Library Management System</title>
+</head>
+<body>
+    <h1>=== Library Management System ===</h1>
+    <h3>Welcome</h3>
+    <p>Please enter your credentials to log in:</p>
+    <hr>
+    {% if error %}
+        <p><b>*** Error: {{ error }} ***</b></p>
+    {% endif %}
+    <form method="POST">
+        <table border="1">
+            <tr>
+                <td><b>Username:</b></td>
+                <td><input type="text" name="username" placeholder="e.g., admin" required></td>
+            </tr>
+            <tr>
+                <td><b>Password:</b></td>
+                <td><input type="password" name="password" placeholder="e.g., admin123" required></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Login"></td>
+            </tr>
+        </table>
+    </form>
+    <hr>
+    <p><i>Forgot your password? Contact the librarian.</i></p>
+</body>
+</html>

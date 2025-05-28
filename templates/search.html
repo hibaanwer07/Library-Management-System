@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Books - Library Management System</title>
+</head>
+<body>
+    <h1>=== Search Library Books ===</h1>
+    <p>Enter a title to find books:</p>
+    <hr>
+    <form method="POST">
+        <table border="1">
+            <tr>
+                <td><b>Search:</b></td>
+                <td><input type="text" name="query" placeholder="e.g., Python" required></td>
+                <td><input type="submit" value="Search"></td>
+            </tr>
+        </table>
+    </form>
+    <hr>
+    {% if results %}
+        <h2>Search Results:</h2>
+        <table border="1">
+            <tr>
+                <th><b>ID</b></th>
+                <th><b>Title</b></th>
+                <th><b>Author</b></th>
+                <th><b>Status</b></th>
+            </tr>
+            {% for book in results %}
+            <tr>
+                <td>{{ book[0] }}</td>
+                <td>{{ book[1] }}</td>
+                <td>{{ book[2] }}</td>
+                <td>{{ book[3] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p><i>No results found. Try a different title.</i></p>
+    {% endif %}
+    <p><a href="{{ url_for('dashboard') }}">Back to Dashboard</a></p>
+</body>
+</html>

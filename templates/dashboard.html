@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - Library Management System</title>
+</head>
+<body>
+    <h1>=== Library Management Dashboard ===</h1>
+    <h3>Welcome, {% if role == 'admin' %}<b>Administrator</b>{% else %}<b>User</b>{% endif %}!</h3>
+    <p>Select an option below:</p>
+    <hr>
+    <table border="1">
+        <tr>
+            <td><b><a href="{{ url_for('all_available_books') }}">All Available Books</a></b></td>
+            <td>List all books currently available</td>
+        </tr>
+        <tr>
+            <td><b><a href="{{ url_for('available_by_type') }}">Available Books by Type</a></b></td>
+            <td>List available books by category</td>
+        </tr>
+        <tr>
+            <td><b><a href="{{ url_for('search') }}">Search Books</a></b></td>
+            <td>Find books in the library</td>
+        </tr>
+        <tr>
+            <td><b><a href="{{ url_for('borrow') }}">Borrow Book</a></b></td>
+            <td>Check out a book</td>
+        </tr>
+        <tr>
+            <td><b><a href="{{ url_for('return_book') }}">Return Book</a></b></td>
+            <td>Return a borrowed book</td>
+        </tr>
+        {% if role == 'admin' %}
+        <tr>
+            <td><b><a href="{{ url_for('admin') }}">Admin Panel</a></b></td>
+            <td>Manage books and users</td>
+        </tr>
+        {% endif %}
+        <tr>
+            <td><b><a href="{{ url_for('logout') }}">Logout</a></b></td>
+            <td>Exit the system</td>
+        </tr>
+    </table>
+    <hr>
+</body>
+</html>

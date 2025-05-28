@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Borrow Book - Library Management System</title>
+</head>
+<body>
+    <h1>=== Borrow a Book ===</h1>
+    <p>Enter the Book ID from search results:</p>
+    <hr>
+    {% if message %}
+        <p><b>{{ message }}</b></p>
+    {% endif %}
+    <form method="POST">
+        <table border="1">
+            <tr>
+                <td><b>Book ID:</b></td>
+                <td><input type="number" name="book_id" placeholder="e.g., 1" required></td>
+                <td><input type="submit" value="Borrow Book"></td>
+            </tr>
+        </table>
+    </form>
+    <hr>
+    <p><a href="{{ url_for('dashboard') }}">Back to Dashboard</a></p>
+</body>
+</html>

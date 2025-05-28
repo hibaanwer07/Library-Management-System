@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Available Books - Library Management System</title>
+</head>
+<body>
+    <h1>=== All Available Books ===</h1>
+    <p>Here are all the books currently available to borrow:</p>
+    <hr>
+    {% if books %}
+        <table border="1">
+            <tr>
+                <th><b>ID</b></th>
+                <th><b>Title</b></th>
+                <th><b>Author</b></th>
+                <th><b>Type</b></th>
+            </tr>
+            {% for book in books %}
+            <tr>
+                <td>{{ book[0] }}</td>
+                <td>{{ book[1] }}</td>
+                <td>{{ book[2] }}</td>
+                <td>{{ book[3] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p><i>No books are currently available.</i></p>
+    {% endif %}
+    <hr>
+    <p><a href="{{ url_for('dashboard') }}">Back to Dashboard</a></p>
+</body>
+</html>

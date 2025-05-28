@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel - Library Management System</title>
+</head>
+<body>
+    <h1>=== Admin Panel ===</h1>
+    <p>Manage the library system:</p>
+    <hr>
+    {% if message %}
+        <p><b>{{ message }}</b></p>
+    {% endif %}
+
+    <h2>Add a New Book</h2>
+    <form method="POST">
+        <table border="1">
+            <tr>
+                <td><b>Title:</b></td>
+                <td><input type="text" name="title" placeholder="e.g., It" required></td>
+            </tr>
+            <tr>
+                <td><b>Author:</b></td>
+                <td><input type="text" name="author" placeholder="e.g., Stephen King" required></td>
+            </tr>
+            <tr>
+                <td><b>Type:</b></td>
+                <td><input type="text" name="type" placeholder="e.g., Horror" required></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Add Book"></td>
+            </tr>
+        </table>
+    </form>
+    <hr>
+
+    <h2>Add a New User</h2>
+    <form method="POST">
+        <table border="1">
+            <tr>
+                <td><b>Username:</b></td>
+                <td><input type="text" name="username" placeholder="e.g., user2" required></td>
+            </tr>
+            <tr>
+                <td><b>Password:</b></td>
+                <td><input type="password" name="password" placeholder="e.g., user456" required></td>
+            </tr>
+            <tr>
+                <td><b>Role:</b></td>
+                <td>
+                    <select name="role" required>
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Add User"></td>
+            </tr>
+        </table>
+    </form>
+    <hr>
+
+    <h2>Current Books</h2>
+    {% if books %}
+        <table border="1">
+            <tr>
+                <th><b>ID</b></th>
+                <th><b>Title</b></th>
+                <th><b>Author</b></th>
+                <th><b>Type</b></th>
+                <th><b>Status</b></th>
+            </tr>
+            {% for book in books %}
+            <tr>
+                <td>{{ book[0] }}</td>
+                <td>{{ book[1] }}</td>
+                <td>{{ book[2] }}</td>
+                <td>{{ book[3] }}</td>
+                <td>{{ book[4] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p><i>No books in the library yet.</i></p>
+    {% endif %}
+    <hr>
+
+    <h2>Current Users</h2>
+    {% if users %}
+        <table border="1">
+            <tr>
+                <th><b>ID</b></th>
+                <th><b>Username</b></th>
+                <th><b>Role</b></th>
+                <th><b>Action</b></th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user[0] }}</td>
+                <td>{{ user[1] }}</td>
+                <td>{{ user[2] }}</td>
+                <td>
+                    <form method="POST">
+                        <input type="hidden" name="delete_user_id" value="{{ user[0] }}">
+                        <input type="submit" value="Delete">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p><i>No users in the system yet.</i></p>
+    {% endif %}
+    <hr>
+
+    <p><a href="{{ url_for('dashboard') }}">Back to Dashboard</a></p>
+</body>
+</html>
